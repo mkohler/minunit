@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <math.h>
+#include <string.h>
 
 // Maximum length of last message
 #define MINUNIT_MESSAGE_LEN 1024
@@ -81,6 +82,17 @@ static void (*minunit_teardown)(void) = NULL;
 		minunit_assert++;\
 		if (!(test)) {\
 			snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s failed:\n\t%s:%d: %s", __func__, __FILE__, __LINE__, #test);\
+			minunit_status = 1;\
+			return;\
+		} else {\
+			printf(".");\
+		}\
+	} while (0)
+
+#define mu_check_str_eq(str1, str2) do {\
+		minunit_assert++;\
+		if (strcmp((str1), (str2))) {\
+			snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s failed:\n\t%s:%d: \"%s\" != \"%s\"", __func__, __FILE__, __LINE__, str1, str2);\
 			minunit_status = 1;\
 			return;\
 		} else {\

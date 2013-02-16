@@ -59,6 +59,9 @@ declaration.
 mu_check(condition): will pass if the condition is evaluated to true, otherwise
 it will show the condition as the error message
 
+mu_check_str_eq(str1, str2): will pass if the strings match, otherwise show both
+strings as the error message
+
 mu_fail(message): will fail and show the message
 
 mu_assert(condition, message): will pass if the condition is true, otherwise it
